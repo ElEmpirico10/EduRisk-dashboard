@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS EduRisk;
 
-USE EduRisk;
+
 
 -- 1. Crear ENUM para tipo de documento
 DROP TYPE IF EXISTS tipo_documento CASCADE;
