@@ -18,7 +18,7 @@
                 <h1>Preguntas</h1>
                 <p>Gestión de preguntas del sistema educativo</p>
             </div>
-            <button class="btn-crear" onclick="crearPregunta()">
+            <button class="btn-crear" onclick="openModal('createModal')">
                 <i class="fas fa-plus"></i>
                 Agregar pregunta
             </button>
@@ -77,6 +77,108 @@
         </div>
     </div>
 
+    <!-- Modal para crear pregunta -->
+<div class="modal" id="createModal">
+  <div class="modal-content">
+    <!-- Encabezado -->
+    <div class="modal-header">
+      <h2 id="modalTitle">Agregar Nueva Pregunta</h2>
+      <span class="close" onclick="closeModal('createModal')">&times;</span>
+    </div>
+
+    <!-- Cuerpo -->
+    <div class="modal-body">
+      <form id="crearPreguntaForm">
+        <div class="form-grid">
+          <!-- Texto de la pregunta -->
+          <div class="form-group full-width">
+            <label for="textoPregunta">Texto de la Pregunta</label>
+            <textarea
+              id="textoPregunta"
+              name="textoPregunta"
+              class="form-control"
+              rows="3"
+              placeholder="Escribe aquí el enunciado de la pregunta"
+              required
+            ></textarea>
+          </div>
+
+          <!-- Tipo de pregunta -->
+          <div class="form-group">
+            <label for="tipoPregunta">Tipo de Pregunta</label>
+            <select
+              id="tipoPregunta"
+              name="tipoPregunta"
+              class="form-control"
+              required
+            >
+              <option value="">Selecciona un tipo</option>
+              <option value="opcion-unica">Selección única (A, B, C...)</option>
+              <option value="multiple">Selección múltiple</option>
+              <option value="libre">Respuesta libre</option>
+            </select>
+          </div>
+
+          <!-- Programa asignado -->
+          <div class="form-group ">
+            <label for="programaPregunta">Programa Asignado</label>
+            <select
+              id="programaPregunta"
+              name="programaPregunta"
+              class="form-control"
+              required
+            >
+              <option value="">Selecciona el programa</option>
+              <option value="analisis-desarrollo">
+                Análisis y Desarrollo de Software
+              </option>
+              <option value="entrenamiento-deportivo">
+                Entrenamiento Deportivo
+              </option>
+              <option value="seguridad-salud">
+                Seguridad y Salud en el Trabajo
+              </option>
+              <option value="diseno-interiores">
+                Diseño de Interiores
+              </option>
+            </select>
+          </div>
+
+          <!-- Contenido (según el tipo) -->
+          <div class="form-group full-width">
+            <label for="contenidoPregunta"
+              >Contenido de la Pregunta (opciones o texto según el
+              tipo)</label
+            >
+            <textarea
+              id="contenidoPregunta"
+              name="contenidoPregunta"
+              class="form-control"
+              rows="3"
+              placeholder="Ejemplo: A) Opción 1&#10;B) Opción 2&#10;C) Opción 3"
+            ></textarea>
+          </div>
+
+          
+        </div>
+      </form>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        
+        <button
+          type="button"
+          class="btn btn-primary"
+          onclick="guardarPregunta()"
+        >
+          <i class="fas fa-save"></i> Guardar Pregunta
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <script>
         // Función de búsqueda
         document.getElementById('search-input').addEventListener('input', function(e) {
@@ -110,23 +212,38 @@
             }
         }
 
-        function crearPregunta() {
-            alert('Función para crear una nueva pregunta');
+       // Funciones del Modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
-        function verPregunta(id) {
-            console.log(`Ver pregunta con ID: ${id}`);
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetForm();
         }
 
-        function modificarPregunta(id) {
-            alert(`Modificar pregunta con ID: ${id}`);
-        }
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            document.getElementById('modalTitle').textContent = 'Agregar Nuevo Estudiante';
+            editingStudentId = null;
+        } 
 
-        function eliminarPregunta(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar esta pregunta?')) {
-                alert(`Pregunta con ID: ${id} eliminada`);
+        // Cerrar modal al hacer clic en el overlay
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal('createModal');
             }
-        }
+        });
+
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal('createModal');
+            }
+        });
+        
     </script>
 </body>
 </html>
