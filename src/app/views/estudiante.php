@@ -35,10 +35,11 @@
                 <thead>
                     <tr>
                         <th>Estudiante</th>
+                        <th>tipo documento</th>
                         <th>Documento</th>
-                        <th>Programa</th>
+                        
                         <th>Estado</th>
-                        <th>Fecha Ingreso</th>
+                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -46,17 +47,18 @@
                     <tr>
                         <td>
                             <div class="student-info">
-                                <div class="student-avatar">JD</div>
+                               
                                 <div class="student-details">
                                     <h4>Juan David Pérez</h4>
                                     <p>juan.perez@email.com</p>
                                 </div>
                             </div>
                         </td>
+                        <td>cedula</td>
                         <td>12345678</td>
-                        <td>Análisis y Desarrollo de Software</td>
+                        
                         <td><span class="status-badge status-activo">Activo</span></td>
-                        <td>15/01/2024</td>
+                       
                         <td>
                             <div class="actions-buttons">
                                 <button class="btn-action btn-edit" onclick="editStudent(1)">
@@ -71,17 +73,17 @@
                     <tr>
                         <td>
                             <div class="student-info">
-                                <div class="student-avatar">MG</div>
+                               
                                 <div class="student-details">
                                     <h4>María González</h4>
                                     <p>maria.gonzalez@email.com</p>
                                 </div>
                             </div>
                         </td>
-                        <td>87654321</td>
-                        <td>Diseño de Interiores</td>
+                        <td>cedula</td>
+                        <td>12345678</td>
                         <td><span class="status-badge status-activo">Activo</span></td>
-                        <td>20/02/2024</td>
+                       
                         <td>
                             <div class="actions-buttons">
                                 <button class="btn-action btn-edit" onclick="editStudent(2)">
@@ -96,17 +98,17 @@
                     <tr>
                         <td>
                             <div class="student-info">
-                                <div class="student-avatar">CR</div>
+                                
                                 <div class="student-details">
                                     <h4>Carlos Rodríguez</h4>
                                     <p>carlos.rodriguez@email.com</p>
                                 </div>
                             </div>
                         </td>
-                        <td>11223344</td>
-                        <td>Entrenamiento Deportivo</td>
+                        <td>cedula</td>
+                        <td>12345678</td>
                         <td><span class="status-badge status-inactivo">Inactivo</span></td>
-                        <td>10/03/2024</td>
+                        
                         <td>
                             <div class="actions-buttons">
                                 <button class="btn-action btn-edit" onclick="editStudent(3)">
@@ -134,42 +136,37 @@
                 <form id="studentForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="nombre">Nombre *</label>
+                            <label for="nombre">Nombres *</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Apellido *</label>
+                            <label for="apellido">Apellidos *</label>
                             <input type="text" id="apellido" name="apellido" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo_documento">tipo documento *</label>
+                            <select id="tipo_documento" name="tipo_documento" class="form-control" required>
+                                <option value="">Seleccionar documento</option>
+                                <option value="cedula">Cedula</option>
+                                <option value="tarjeta_identidad">Tarjeta de idedntidad</option>
+                                <option value="cedula_extranjera">veneco</option>
+                                
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="documento">Documento *</label>
                             <input type="text" id="documento" name="documento" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-control">
-                        </div>
-                        <div class="form-group full-width">
                             <label for="email">Correo Electrónico *</label>
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
+                        
+                        
                         <div class="form-group">
-                            <label for="programa">Programa *</label>
-                            <select id="programa" name="programa" class="form-control" required>
-                                <option value="">Seleccionar programa</option>
-                                <option value="analisis-desarrollo">Análisis y Desarrollo de Software</option>
-                                <option value="entrenamiento-deportivo">Entrenamiento Deportivo</option>
-                                <option value="seguridad-salud">Seguridad y Salud en el Trabajo</option>
-                                <option value="diseño-interiores">Diseño de Interiores</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha_ingreso">Fecha de Ingreso *</label>
-                            <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control" required>
-                        </div>
-                        <div class="form-group full-width">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" id="direccion" name="direccion" class="form-control">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control">
                         </div>
                     </div>
                 </form>
@@ -211,13 +208,12 @@
             // Por ahora, datos de ejemplo
             if (id === 1) {
                 document.getElementById('nombre').value = 'Juan David';
-                document.getElementById('apellido').value = 'Pérez';
+                document.getElementById('apelido').value = 'cano';
                 document.getElementById('documento').value = '12345678';
                 document.getElementById('email').value = 'juan.perez@email.com';
-                document.getElementById('telefono').value = '3001234567';
-                document.getElementById('programa').value = 'analisis-desarrollo';
-                document.getElementById('fecha_ingreso').value = '2024-01-15';
-                document.getElementById('direccion').value = 'Calle 123 #45-67';
+                document.getElementById('tipo_documento').value = 'veneco';
+               console.log(id)
+                document.getElementById('password').value = '';
             }
             
             openModal('createModal');
