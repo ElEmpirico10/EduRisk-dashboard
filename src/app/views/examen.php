@@ -14,24 +14,27 @@
     <!-- Contenido principal -->
     <div class="main">
         <div class="main-header">
-            <h1>Gestión de Exámenes</h1>
-            <p>Administra y organiza todos los exámenes del sistema educativo</p>
-        </div>
-
-        <!-- Controles -->
-        <div class="controls">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Buscar exámenes..." id="searchInput">
+            <div>
+                <h1>Examenes</h1>
+                <p>Gestión de estudiantes del sistema educativo</p>
             </div>
-            <button class="btn-primary" onclick="crearExamen()">
+            <button class="btn-crear" onclick="openModal('createModal')">
                 <i class="fas fa-plus"></i>
-                Crear Examen
+                Agregar examen
             </button>
         </div>
 
+        
+
         <!-- Tabla de exámenes -->
         <div class="table-container">
+
+            <div class="search-bar">
+                
+                <input type="text" class='search-input' placeholder="Buscar exámenes..." id="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
             <table class="table" id="examenesTable">
                 <thead>
                     <tr>
@@ -87,48 +90,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Examen de Seguridad Laboral</td>
-                        <td>Seguridad y Salud en el Trabajo</td>
-                        <td>10/03/2024</td>
-                        <td><span class="status-badge status-inactive">Inactivo</span></td>
-                        <td>30</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="verExamen(3)" title="Ver">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="modificarExamen(3)" title="Modificar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="eliminarExamen(3)" title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Evaluación de Diseño</td>
-                        <td>Diseño de Interiores</td>
-                        <td>08/03/2024</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>18</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="verExamen(4)" title="Ver">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="modificarExamen(4)" title="Modificar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="eliminarExamen(4)" title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    
+                    
                 </tbody>
             </table>
         </div>
@@ -136,7 +99,7 @@
 
     <script>
         // Función de búsqueda
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        document.getElementById('search-input').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             const tableBody = document.getElementById('examenesTableBody');
             const rows = tableBody.getElementsByTagName('tr');
