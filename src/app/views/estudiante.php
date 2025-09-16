@@ -153,7 +153,7 @@
                                 <option value="">Seleccionar documento</option>
                                 <option value="cedula">Cedula</option>
                                 <option value="tarjeta_identidad">Tarjeta de idedntidad</option>
-                                <option value="cedula_extranjera">veneco</option>
+                                <option value="cedula_extranjera">cedula extranjera</option>
                                 
                             </select>
                         </div>

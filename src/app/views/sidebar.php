@@ -9,7 +9,7 @@
             <a href="/dashboard"><i class="fas fa-home"></i> Inicio</a>
             <a href="/estudiante"><i class="fas fa-user-graduate"></i> Estudiantes</a>
             <a href="/examen"><i class="fas fa-clipboard-check"></i> Exámenes</a>
-            <a href="###"><i class="fas fa-solid fa-file-lines"></i> Preguntas</a>
+            <a href="/preguntas"><i class="fas fa-solid fa-file-lines"></i> Preguntas</a>
 
         </div>
     

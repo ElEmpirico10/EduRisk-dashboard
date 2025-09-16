@@ -73,13 +73,70 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
-                    
-                        
-                    
-                    
+                    </tr> 
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Modal para crear examen -->
+    <div class="modal" id="createModal">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h2 id="modalTitle">Agregar Nuevo Examen</h2>
+                <span class="close" onclick="closeModal('createModal')">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <form id="crearExamenForm">
+                    <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombreExamen">Nombre del Examen</label>
+                        <input type="text" id="nombreExamen" name="nombreExamen" class="form-control" placeholder="Ej: Examen de Ingreso - Programación" required>
+                    </div>
+
+                    
+                        <div class="form-group">
+                            <label for="fechaCreacion">Fecha de Creación</label>
+                            <input type="date" id="fechaCreacion" name="fechaCreacion" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha de Fin</label>
+                            <input type="date" id="fechaFin" name="fechaFin" class="form-control" required>
+                        </div>
+                    
+
+                    
+                        <div class="form-group">
+                            <label for="numPreguntas">Número de Preguntas</label>
+                            <input type="number" id="numPreguntas" name="numPreguntas" class="form-control" placeholder="30" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <select id="estado" name="estado" class="form-control" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="habilitado" name="habilitado">
+                            <label for="habilitado">Habilitar examen</label>
+                        </div>
+                    </div>
+                    </div>
+                
+                </form>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="guardarExamen()">
+                    <i class="fas fa-save"></i> Crear Examen
+                </button>
+            </div>
+            </div>
+
+            
         </div>
     </div>
 
@@ -101,41 +158,66 @@
                 }
             }
         });
-
-        // Función para crear examen
-        function crearExamen() {
-            alert('Función para crear un nuevo examen - Aquí se abriría el modal o formulario de creación');
+// Funciones del Modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
-        // Función para ver examen (no hace nada por ahora)
-        function verExamen(id) {
-            console.log(`Ver examen con ID: ${id}`);
-            // No hace nada por ahora como solicitaste
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetForm();
         }
 
-        // Función para modificar examen
-        function modificarExamen(id) {
-            alert(`Modificar examen con ID: ${id} - Aquí se abriría el formulario de edición`);
-        }
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            document.getElementById('modalTitle').textContent = 'Agregar Nuevo Estudiante';
+            editingStudentId = null;
+        } 
 
-        // Función para eliminar examen
-        function eliminarExamen(id) {
-            if (confirm('¿Estás seguro de que deseas eliminar este examen?')) {
-                // Aquí iría la lógica para eliminar
-                alert(`Examen con ID: ${id} eliminado (simulación)`);
-                
-                // Simular eliminación visual
-                const rows = document.querySelectorAll('#examenesTableBody tr');
-                rows.forEach(row => {
-                    if (row.cells[0].textContent.includes(id.toString().padStart(3, '0'))) {
-                        row.style.transition = 'opacity 0.3s ease';
-                        row.style.opacity = '0';
-                        setTimeout(() => {
-                            row.remove();
-                        }, 300);
-                    }
-                });
+        // Cerrar modal al hacer clic en el overlay
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal('createModal');
             }
+        });
+
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal('createModal');
+            }
+        });
+
+        // Función para guardar el examen
+        function guardarExamen() {
+            const form = document.getElementById('crearExamenForm');
+            const formData = new FormData(form);
+            
+            // Validar campos requeridos
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Obtener datos del formulario
+            const examenData = {
+                nombre: formData.get('nombreExamen'),
+                fechaCreacion: formData.get('fechaCreacion'),
+                fechaFin: formData.get('fechaFin'),
+                numPreguntas: formData.get('numPreguntas'),
+                estado: formData.get('estado'),
+                habilitado: document.getElementById('habilitado').checked,
+                descripcion: formData.get('descripcion')
+            };
+
+            // Aquí iría la lógica para enviar los datos al servidor
+            console.log('Datos del examen:', examenData);
+            
+            // Simular guardado exitoso
+            alert('Examen creado exitosamente');
+            closeModal('createModal');
         }
 
         // Animaciones al cargar la página
