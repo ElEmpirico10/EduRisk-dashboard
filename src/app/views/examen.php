@@ -40,8 +40,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre del Examen</th>
-                        <th>Programa</th>
+                        
                         <th>Fecha de Creación</th>
+                        <th>Fecha de fin</th>
+                        <th>habilitado</th>
                         <th>Estado</th>
                         <th>Preguntas</th>
                         <th>Acciones</th>
@@ -51,10 +53,13 @@
                     <tr>
                         <td>001</td>
                         <td>Examen de Ingreso - Programación</td>
-                        <td>Análisis y Desarrollo de Software</td>
+                        
                         <td>15/03/2024</td>
+                        <td>19/03/2024</td>
+                        <td><span class="status-badge status-inactivo">FALSE</span></td>
                         <td><span class="status-badge status-active">Activo</span></td>
-                        <td>25</td>
+                        <td>29/30</td>
+                        
                         <td>
                             <div class="action-buttons">
                                 <button class="btn-action btn-view" onclick="verExamen(1)" title="Ver">
@@ -69,27 +74,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Evaluación Deportiva</td>
-                        <td>Entrenamiento Deportivo</td>
-                        <td>12/03/2024</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>20</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-action btn-view" onclick="verExamen(2)" title="Ver">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn-action btn-edit" onclick="modificarExamen(2)" title="Modificar">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="eliminarExamen(2)" title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    
+                        
                     
                     
                 </tbody>

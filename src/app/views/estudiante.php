@@ -37,9 +37,8 @@
                         <th>Estudiante</th>
                         <th>tipo documento</th>
                         <th>Documento</th>
-                        
+                        <th>ficha</th>
                         <th>Estado</th>
-                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -56,6 +55,7 @@
                         </td>
                         <td>cedula</td>
                         <td>12345678</td>
+                        <td>2933470</td>
                         
                         <td><span class="status-badge status-activo">Activo</span></td>
                        
@@ -82,6 +82,8 @@
                         </td>
                         <td>cedula</td>
                         <td>12345678</td>
+                        <td>3984628</td>
+
                         <td><span class="status-badge status-activo">Activo</span></td>
                        
                         <td>
@@ -107,6 +109,7 @@
                         </td>
                         <td>cedula</td>
                         <td>12345678</td>
+                        <td>785748</td>
                         <td><span class="status-badge status-inactivo">Inactivo</span></td>
                         
                         <td>
@@ -165,8 +168,14 @@
                         
                         
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" class="form-control">
+                            <label for="ficha">tipo documento *</label>
+                            <select id="ficha" name="ficha" class="form-control" required>
+                                <option value="">Seleccionar Ficha</option>
+                                <option value="2933470">2933470</option>
+                                <option value="2933477">2933477</option>
+                                
+                                
+                            </select>
                         </div>
                     </div>
                 </form>
