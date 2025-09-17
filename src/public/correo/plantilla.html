@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Acceso Temporal - SENA</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f8f9fa; color: #333333; line-height: 1.5; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+    
+    <!-- Wrapper principal -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                
+                <!-- Contenedor del email -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);">
+                    
+                    <!-- Header -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); padding: 50px 30px; text-align: center; border-radius: 12px 12px 0 0;">
+                            
+                            <!-- Logo de texto SENA -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <div style="background-color: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 12px; padding: 20px 40px; margin-bottom: 25px; display: inline-block;">
+                                            <h1 style="margin: 0; color: #ffffff; font-size: 36px; font-weight: 700; letter-spacing: 8px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">SENA</h1>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <h2 style="margin: 0; color: rgba(255, 255, 255, 0.95); font-size: 18px; font-weight: 500; letter-spacing: 1px;">Servicio Nacional de Aprendizaje</h2>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Contenido -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            
+                            <!-- Saludo -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <h3 style="margin: 0 0 20px 0; font-size: 22px; font-weight: 600; color: #2e7d32;">¡Hola, {{NOMBRE_USUARIO}}!</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Mensaje -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <p style="margin: 0 0 30px 0; font-size: 16px; color: #666666; line-height: 1.6;">
+                                            Hemos generado una clave de acceso temporal para tu cuenta en el sistema SENA. 
+                                            Utiliza esta información para ingresar a la plataforma.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Email info -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 8px; margin-bottom: 30px;">
+                                <tr>
+                                    <td style="padding: 16px 20px;">
+                                        <p style="margin: 0 0 4px 0; font-size: 14px; color: #666666;">Tu cuenta de acceso:</p>
+                                        <p style="margin: 0; font-size: 16px; font-weight: 600; color: #2e7d32;">{{CORREO_USUARIO}}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Tarjeta de contraseña -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); border-radius: 12px; margin: 30px 0;">
+                                <tr>
+                                    <td style="padding: 30px; text-align: center;">
+                                        <p style="margin: 0 0 20px 0; color: #ffffff; font-size: 16px; font-weight: 600;">🔑 Clave Temporal</p>
+                                        <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                                            <p style="margin: 0; font-family: 'Courier New', Courier, monospace; font-size: 24px; font-weight: bold; color: #2e7d32; letter-spacing: 3px; word-break: break-all;">{{CLAVE_GENERICA}}</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Alerta -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 6px; margin: 30px 0;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <p style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #856404;">⚠️ Cambio Obligatorio</p>
+                                        <p style="margin: 0; font-size: 15px; color: #856404; line-height: 1.5;">
+                                            <strong>Esta clave es temporal.</strong> El sistema te obligará a cambiarla 
+                                            por una personal en tu primer inicio de sesión.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Pasos -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 12px; margin: 30px 0;">
+                                <tr>
+                                    <td style="padding: 30px;">
+                                        <h4 style="margin: 0 0 20px 0; font-size: 18px; font-weight: 600; color: #2e7d32;">Pasos para acceder:</h4>
+                                        
+                                        <!-- Paso 1 -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e9ecef;">
+                                            <tr>
+                                                <td width="30" style="vertical-align: top; padding-right: 15px; padding-top: 2px;">
+                                                    <div style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: inline-block; text-align: center; line-height: 24px; font-size: 12px; font-weight: 600;">1</div>
+                                                </td>
+                                                <td style="vertical-align: top;">
+                                                    <p style="margin: 0; font-size: 15px; color: #555555; line-height: 1.5;">Ingresa con tu correo: <strong>{{CORREO_USUARIO}}</strong></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Paso 2 -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e9ecef;">
+                                            <tr>
+                                                <td width="30" style="vertical-align: top; padding-right: 15px; padding-top: 2px;">
+                                                    <div style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: inline-block; text-align: center; line-height: 24px; font-size: 12px; font-weight: 600;">2</div>
+                                                </td>
+                                                <td style="vertical-align: top;">
+                                                    <p style="margin: 0; font-size: 15px; color: #555555; line-height: 1.5;">Usa la clave temporal mostrada arriba</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Paso 3 -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #e9ecef;">
+                                            <tr>
+                                                <td width="30" style="vertical-align: top; padding-right: 15px; padding-top: 2px;">
+                                                    <div style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: inline-block; text-align: center; line-height: 24px; font-size: 12px; font-weight: 600;">3</div>
+                                                </td>
+                                                <td style="vertical-align: top;">
+                                                    <p style="margin: 0; font-size: 15px; color: #555555; line-height: 1.5;">Crea una nueva contraseña segura cuando el sistema te lo solicite</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <!-- Paso 4 -->
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td width="30" style="vertical-align: top; padding-right: 15px; padding-top: 2px;">
+                                                    <div style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: #ffffff; width: 24px; height: 24px; border-radius: 50%; display: inline-block; text-align: center; line-height: 24px; font-size: 12px; font-weight: 600;">4</div>
+                                                </td>
+                                                <td style="vertical-align: top;">
+                                                    <p style="margin: 0; font-size: 15px; color: #555555; line-height: 1.5;">¡Listo! Ya puedes usar todas las funcionalidades</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Botón -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td align="center" style="padding: 30px 0;">
+                                        <!--[if mso]>
+                                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.sena.edu.co" style="height:48px;v-text-anchor:middle;width:250px;" arcsize="17%" stroke="f" fillcolor="#4caf50">
+                                        <w:anchorlock/>
+                                        <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:600;">Acceder al Sistema SENA</center>
+                                        </v:roundrect>
+                                        <![endif]-->
+                                        <!--[if !mso]><!-->
+                                        <a href="https://www.sena.edu.co" style="display: inline-block; background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; box-shadow: 0 3px 12px rgba(76, 175, 80, 0.3);">
+                                            Acceder al Sistema SENA
+                                        </a>
+                                        <!--<![endif]-->
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8f9fa; padding: 30px; text-align: center; border-top: 1px solid #e9ecef; border-radius: 0 0 12px 12px;">
+                            
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #2e7d32;">Servicio Nacional de Aprendizaje</h4>
+                                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #666666;">📍 Calle 30 - SENA</p>
+                                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #666666;">🌐 www.sena.edu.co</p>
+                                        <p style="margin: 0 0 20px 0; font-size: 14px; color: #666666;">📧 soporte@sena.edu.co</p>
+                                        <p style="margin: 0; font-size: 13px; color: #999999;">© 2025 SENA. Este correo fue generado automáticamente.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
