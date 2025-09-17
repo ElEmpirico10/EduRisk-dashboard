@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudiantes | EduRisk</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../../public/css/estudiante.css">
+    <link rel="stylesheet" href="../../public/css/ficha.css">
     
 </head>
 <body>
@@ -16,48 +16,40 @@
     <div class="main">
         <div class="main-header">
             <div>
-                <h1>Aspirantes</h1>
-                <p>Modulo para la inscripción, seguimiento y gestión de aspirantes</p>
+                <h1>Fichas</h1>
+                <p>Modulo para la creacion y seguimiento de ficha</p>
             </div>
             <button class="btn-crear" onclick="openModal('createModal')">
                 <i class="fas fa-plus"></i>
-                Agregar Apirantes
+                Agregar Ficha
             </button>
         </div>
 
         <div class="estudiantes-container">
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Buscar aspirante por nombre, documento o ficha..." id="searchInput">
+                <input type="text" class="search-input" placeholder="Buscar ficha por nombre o codigo..." id="searchInput">
                 <i class="fas fa-search search-icon"></i>
             </div>
 
             <table class="estudiantes-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
-                        <th>tipo documento</th>
-                        <th>Documento</th>
+                        
                         <th>ficha</th>
-                        <th>Estado</th>
+                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="estudiantesTableBody">
                     <tr>
-                        <td>
-                            <div class="student-info">
-                               
-                                <div class="student-details">
-                                    <h4>Juan David Pérez</h4>
-                                    <p>juan.perez@email.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>cedula</td>
-                        <td>12345678</td>
+                        
+                        <td>01</td>
+                        <td>adso</td>
                         <td>2933470</td>
                         
-                        <td><span class="status-badge status-activo">Activo</span></td>
+                        
                        
                         <td>
                             <div class="actions-buttons">
@@ -70,59 +62,8 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="student-info">
-                               
-                                <div class="student-details">
-                                    <h4>María González</h4>
-                                    <p>maria.gonzalez@email.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>cedula</td>
-                        <td>12345678</td>
-                        <td>3984628</td>
-
-                        <td><span class="status-badge status-activo">Activo</span></td>
-                       
-                        <td>
-                            <div class="actions-buttons">
-                                <button class="btn-action btn-edit" onclick="editStudent(2)">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="deleteStudent(2)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="student-info">
-                                
-                                <div class="student-details">
-                                    <h4>Carlos Rodríguez</h4>
-                                    <p>carlos.rodriguez@email.com</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>cedula</td>
-                        <td>12345678</td>
-                        <td>785748</td>
-                        <td><span class="status-badge status-inactivo">Inactivo</span></td>
-                        
-                        <td>
-                            <div class="actions-buttons">
-                                <button class="btn-action btn-edit" onclick="editStudent(3)">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn-action btn-delete" onclick="deleteStudent(3)">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    
+                    
                 </tbody>
             </table>
         </div>
@@ -132,51 +73,24 @@
     <div id="createModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">Agregar Nuevo Apirantes</h2>
+                <h2 id="modalTitle">Agregar Nueva Ficha</h2>
                 <span class="close" onclick="closeModal('createModal')">&times;</span>
             </div>
             <div class="modal-body">
                 <form id="studentForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="nombre">Nombres *</label>
+                            <label for="nombre">Nombre *</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="apellido">Apellidos *</label>
-                            <input type="text" id="apellido" name="apellido" class="form-control" required>
-                        </div>
                         
-                        <div class="form-group">
-                            <label for="tipo_documento">tipo documento *</label>
-                            <select id="tipo_documento" name="tipo_documento" class="form-control" required>
-                                <option value="">Seleccionar documento</option>
-                                <option value="cedula">Cedula</option>
-                                <option value="tarjeta_identidad">Tarjeta de idedntidad</option>
-                                <option value="cedula_extranjera">cedula extranjera</option>
-                                
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="documento">Documento *</label>
-                            <input type="text" id="documento" name="documento" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
                         
                         
                         <div class="form-group">
-                            <label for="ficha">Ficha *</label>
-                            <select id="ficha" name="ficha" class="form-control" required>
-                                <option value="">Seleccionar Ficha</option>
-                                <option value="2933470">2933470</option>
-                                <option value="2933477">2933477</option>
-                                
-                                
-                            </select>
+                            <label for="Ficha">Ficha *</label>
+                            <input type="text" id="ficha" name="ficha" class="form-control" required>
                         </div>
+                       
                     </div>
                 </form>
             </div>

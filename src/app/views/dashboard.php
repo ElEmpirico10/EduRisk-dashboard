@@ -13,8 +13,8 @@
     <!-- Contenido principal -->
     <div class="main">
         <div class="main-header">
-            <h1>Panel de Control</h1>
-            <p>Bienvenido al sistema de gestión educativa EduRisk</p>
+            <h1>Panel de Administración</h1>
+            <p>Gestión integral del sistema educativo a través de <strong>EduRisk</strong></p>
         </div>
 
         <!-- Tarjetas de estadísticas principales -->
@@ -24,7 +24,7 @@
                     <div class="card-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Total Estudiantes</h3>
+                    <h3>Total Aspirantes</h3>
                 </div>
                 <div class="card-value">120</div>
                 <div class="card-subtitle">

@@ -16,7 +16,7 @@
         <div class="main-header">
             <div>
                 <h1>Examenes</h1>
-                <p>Gestión de estudiantes del sistema educativo</p>
+                <p>Modulo para la gestión centralizada y ordenada de los exámenes académicos</p>
             </div>
             <button class="btn-crear" onclick="openModal('createModal')">
                 <i class="fas fa-plus"></i>
@@ -45,7 +45,7 @@
                         <th>Fecha de fin</th>
                         <th>habilitado</th>
                         <th>Estado</th>
-                        <th>Preguntas</th>
+                        <th>Ficha</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -58,7 +58,7 @@
                         <td>19/03/2024</td>
                         <td><span class="status-badge status-inactivo">FALSE</span></td>
                         <td><span class="status-badge status-active">Activo</span></td>
-                        <td>29/30</td>
+                        <td>2922230</td>
                         
                         <td>
                             <div class="action-buttons">
@@ -108,8 +108,12 @@
 
                     
                         <div class="form-group">
-                            <label for="numPreguntas">Número de Preguntas</label>
-                            <input type="number" id="numPreguntas" name="numPreguntas" class="form-control" placeholder="30" min="1" required>
+                            <label for="estado">Ficha</label>
+                            <select id="estado" name="estado" class="form-control" required>
+                                <option value="Activo">Ficha</option>
+                                <option value="Activo">585473</option>
+                                <option value="Inactivo">2837492</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="estado">Estado</label>

@@ -7,10 +7,12 @@
         <div class="sidebar-menu">
             
             <a href="/dashboard"><i class="fas fa-home"></i> Inicio</a>
-            <a href="/estudiante"><i class="fas fa-user-graduate"></i> Estudiantes</a>
+            <a href="/estudiante"><i class="fas fa-user-graduate"></i> Aspirantes</a>
+            <a href="/ficha"><i class="fas fa-user-graduate"></i> Ficha</a>
+
             <a href="/examen"><i class="fas fa-clipboard-check"></i> Exámenes</a>
             <a href="/preguntas"><i class="fas fa-solid fa-file-lines"></i> Preguntas</a>
-            <a href="/resultado"><i class="fas fa-solid fa-magnifying-glass"></i> resultado</a>
+            <a href="/resultado"><i class="fas fa-solid fa-magnifying-glass"></i> Resultado</a>
 
 
         </div>

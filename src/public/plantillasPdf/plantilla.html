@@ -3,320 +3,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clave de Acceso - Sistema Educativo</title>
+    <title>Acceso Temporal - SENA</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
     <style>
+        /* Reset para clientes de correo */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.5;
+        }
+        
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        
+        /* Contenedor principal */
+        .email-wrapper {
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 20px 0;
         }
         
         .email-container {
             max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 20px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
-        .email-header {
-            background: linear-gradient(135deg, #4caf50 0%, #e8f5e9 100%);
-            padding: 30px;
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            padding: 40px 30px;
             text-align: center;
-            position: relative;
-        }
-        
-        .logo-container {
-            margin-bottom: 20px;
         }
         
         .logo {
-            width: 80px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
         }
         
         .header-title {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #2e7d32, #00cc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
         }
         
         .header-subtitle {
-            color: #2e7d32;
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
         }
         
-        .email-body {
+        /* Contenido */
+        .content {
             padding: 40px 30px;
         }
         
         .greeting {
-            font-size: 1.2rem;
+            font-size: 20px;
+            font-weight: 600;
             color: #2e7d32;
             margin-bottom: 20px;
-            font-weight: 600;
         }
         
-        .message-content {
-            font-size: 1rem;
-            color: #666;
+        .message {
+            font-size: 16px;
+            color: #666666;
             margin-bottom: 30px;
-            line-height: 1.7;
+            line-height: 1.6;
         }
         
-        .credentials-card {
-            background: rgba(76, 175, 80, 0.05);
-            border: 2px solid rgba(0, 255, 0, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            text-align: center;
+        .email-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
         }
         
-        .credentials-title {
-            color: #2e7d32;
-            font-size: 1.1rem;
+        .email-label {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 4px;
+        }
+        
+        .email-value {
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+        
+        /* Tarjeta de contraseña */
+        .password-card {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .password-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
         
         .password-display {
-            background: white;
-            border: 2px solid #00cc00;
-            border-radius: 10px;
-            padding: 15px 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
             font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
+            font-size: 24px;
             font-weight: bold;
             color: #2e7d32;
-            letter-spacing: 2px;
-            margin: 10px 0;
-            box-shadow: 0 3px 10px rgba(0, 204, 0, 0.2);
+            letter-spacing: 3px;
+            word-break: break-all;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .security-note {
-            background: rgba(255, 193, 7, 0.1);
+        /* Alerta */
+        .alert {
+            background-color: #fff3cd;
             border-left: 4px solid #ffc107;
+            border-radius: 6px;
             padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
+            margin: 30px 0;
         }
         
-        .security-note-title {
-            color: #e65100;
+        .alert-title {
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 10px;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        
+        .alert-text {
+            font-size: 15px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        /* Pasos */
+        .steps {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .steps-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+        
+        .step {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e9ecef;
         }
         
-        .security-icon {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .instructions {
-            background: rgba(33, 150, 243, 0.05);
-            border-left: 4px solid #2196f3;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
-        
-        .instructions-title {
-            color: #1976d2;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .instructions-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .instructions-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(33, 150, 243, 0.1);
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .instructions-list li:last-child {
+        .step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
             border-bottom: none;
         }
         
-        .instructions-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2196f3;
-            font-weight: bold;
+        .step-number {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: #ffffff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
         
-        .email-footer {
-            background: rgba(76, 175, 80, 0.05);
+        .step-text {
+            font-size: 15px;
+            color: #555555;
+            line-height: 1.5;
+        }
+        
+        /* Botón */
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 3px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
             padding: 30px;
             text-align: center;
-            border-top: 1px solid rgba(0, 255, 0, 0.2);
+            border-top: 1px solid #e9ecef;
         }
         
-        .footer-content {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-        
-        .contact-info {
-            color: #2e7d32;
-            font-weight: 500;
-        }
-        
-        .support-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #00ff00, #00cc00);
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 25px;
+        .footer-title {
+            font-size: 16px;
             font-weight: 600;
-            margin: 15px 0;
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
-            transition: all 0.3s ease;
+            color: #2e7d32;
+            margin-bottom: 12px;
         }
         
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
-            margin: 20px 0;
+        .footer-info {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 8px;
         }
         
+        .footer-copyright {
+            font-size: 13px;
+            color: #999999;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
         @media only screen and (max-width: 600px) {
             .email-container {
-                margin: 10px;
-                border-radius: 15px;
+                margin: 0 10px;
+                border-radius: 8px;
             }
             
-            .email-header, .email-body, .email-footer {
-                padding: 20px;
+            .header, .content, .footer {
+                padding: 25px 20px !important;
             }
             
             .header-title {
-                font-size: 1.5rem;
+                font-size: 24px !important;
             }
             
             .password-display {
-                font-size: 1.1rem;
-                padding: 12px 15px;
-                letter-spacing: 1px;
+                font-size: 20px !important;
+                letter-spacing: 2px !important;
+                padding: 15px !important;
             }
             
-            .credentials-card {
-                padding: 20px;
+            .greeting {
+                font-size: 18px !important;
+            }
+            
+            .steps {
+                padding: 20px !important;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .email-container {
+                background-color: #ffffff;
             }
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <!-- Header -->
-        <div class="email-header">
-            <div class="logo-container">
-                <img src="../../public/assets/image/logoSena.png" alt="Logo Institucional" class="logo">
-            </div>
-            <h1 class="header-title">Servicio Nacional de Aprendizaje</h1>
-            
-        </div>
-
-        <!-- Body -->
-        <div class="email-body">
-            <div class="greeting">
-                ¡Hola, {{NOMBRE_USUARIO}}!
-            </div>
-            
-            <div class="message-content">
-                Esperamos que te encuentres bien. Hemos generado una clave de acceso temporal para tu cuenta <strong>{{CORREO_USUARIO}}</strong> en nuestro sistema del Servicio Nacional de Aprendizaje (SENA). Esta clave te permitirá acceder a todas las funcionalidades de la plataforma académica.
-            </div>
-
-            <div class="credentials-card">
-                <div class="credentials-title">
-                    🔑 Tu Clave de Acceso Temporal
-                </div>
-                <div class="password-display">
-                    {{CLAVE_GENERICA}}
-                </div>
-                <small style="color: #666; font-style: italic;">
-                    Guarda esta clave en un lugar seguro
-                </small>
-            </div>
-
-            <div class="security-note">
-                <div class="security-note-title">
-                    <span class="security-icon">⚠️</span>
-                    Importante - Medidas de Seguridad
-                </div>
-                <p><strong>ATENCIÓN:</strong> Esta es una clave temporal que <strong>DEBES cambiar obligatoriamente</strong> en tu primer inicio de sesión. El sistema te solicitará crear una nueva contraseña personal antes de continuar.</p>
-            </div>
-
-            <div class="instructions">
-                <div class="instructions-title">📋 Pasos para Acceder al Sistema</div>
-                <ul class="instructions-list">
-                    <li>Ingresa al sistema SENA con tu correo: <strong>{{CORREO_USUARIO}}</strong></li>
-                    <li>Utiliza la clave temporal proporcionada arriba</li>
-                    <li><strong>OBLIGATORIO:</strong> El sistema te pedirá cambiar la contraseña inmediatamente</li>
-                    <li>Crea una contraseña segura y personalizada (mínimo 8 caracteres)</li>
-                    <li>Confirma tu nueva contraseña y guárdala en un lugar seguro</li>
-                    <li>¡Listo! Ya puedes acceder a todas las funcionalidades del SENA</li>
-                </ul>
-            </div>
-
-            <div class="divider"></div>
-
-            <div style="text-align: center; margin: 30px 0;">
-                <p style="color: #666; margin-bottom: 15px;">
-                    ¿Necesitas ayuda para acceder?
-                </p>
-                <a href="mailto:soporte@sena.edu.co" class="support-button">
-                    📧 Contactar Soporte Técnico SENA
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="email-footer">
-            <div class="footer-content">
-                Este correo fue generado automáticamente por el sistema.<br>
-                Por favor, no respondas a este mensaje.
-            </div>
-            
-            <div class="divider"></div>
-            
-            <div class="contact-info">
-                <strong>Servicio Nacional de Aprendizaje - SENA</strong><br>
-                📍 Calle 30 - SENA<br>
-                📞 Teléfono: (+57) 123 456 7890<br>
-                🌐 www.sena.edu.co
-            </div>
-            
-            <div style="margin-top: 20px; font-size: 0.85rem; color: #999;">
-                © 2025 Servicio Nacional de Aprendizaje - SENA. Todos los derechos reservados.
-            </div>
-        </div>
+    <div class="email-wrapper">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td align="center">
+                    <div class="email-container">
+                        <!-- Header -->
+                        <div class="header">
+                            <div class="logo">
+                                <img src="../../public/assets/image/logoSena.png" alt="SENA" />
+                            </div>
+                            <h1 class="header-title">SENA</h1>
+                            <p class="header-subtitle">Servicio Nacional de Aprendizaje</p>
+                        </div>
+                        
+                        <!-- Contenido -->
+                        <div class="content">
+                            <div class="greeting">¡Hola, {{NOMBRE_USUARIO}}!</div>
+                            
+                            <div class="message">
+                                Hemos generado una clave de acceso temporal para tu cuenta en el sistema SENA. 
+                                Utiliza esta información para ingresar a la plataforma.
+                            </div>
+                            
+                            <div class="email-info">
+                                <div class="email-label">Tu cuenta de acceso:</div>
+                                <div class="email-value">{{CORREO_USUARIO}}</div>
+                            </div>
+                            
+                            <div class="password-card">
+                                <div class="password-title">🔑 Clave Temporal</div>
+                                <div class="password-display">{{CLAVE_GENERICA}}</div>
+                            </div>
+                            
+                            <div class="alert">
+                                <div class="alert-title">⚠️ Cambio Obligatorio</div>
+                                <div class="alert-text">
+                                    <strong>Esta clave es temporal.</strong> El sistema te obligará a cambiarla 
+                                    por una personal en tu primer inicio de sesión.
+                                </div>
+                            </div>
+                            
+                            <div class="steps">
+                                <div class="steps-title">Pasos para acceder:</div>
+                                <div class="step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-text">Ingresa con tu correo: <strong>{{CORREO_USUARIO}}</strong></div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-text">Usa la clave temporal mostrada arriba</div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-text">Crea una nueva contraseña segura cuando el sistema te lo solicite</div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-text">¡Listo! Ya puedes usar todas las funcionalidades</div>
+                                </div>
+                            </div>
+                            
+                            <div class="button-container">
+                                <a href="https://www.sena.edu.co" class="button">
+                                    Acceder al Sistema SENA
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Footer -->
+                        <div class="footer">
+                            <div class="footer-title">Servicio Nacional de Aprendizaje</div>
+                            <div class="footer-info">📍 Calle 30 - SENA</div>
+                            <div class="footer-info">🌐 www.sena.edu.co</div>
+                            <div class="footer-info">📧 soporte@sena.edu.co</div>
+                            
+                            <div class="footer-copyright">
+                                © 2025 SENA. Este correo fue generado automáticamente.
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

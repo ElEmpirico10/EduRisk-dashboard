@@ -15,8 +15,9 @@
     <div class="main">
         <div class="main-header">
             <div>
-                <h1>Preguntas</h1>
-                <p>Gestión de preguntas del sistema educativo</p>
+                <h1>Gestión de Preguntas</h1>
+                <p>Modulo para la administración y control de las preguntas del sistema educativo</p>
+
             </div>
             <button class="btn-crear" onclick="openModal('createModal')">
                 <i class="fas fa-plus"></i>
@@ -48,7 +49,7 @@
                         <th>ID</th>
                         <th>Pregunta</th>
                         <th>Tipo de Pregunta</th>
-                        <th>Materia</th>
+                        <th>Programa</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -57,7 +58,7 @@
                         <td>001</td>
                         <td class="pregunta-text">¿Cuál es el resultado de 2 + 2 en programación básica?</td>
                         <td><span class="tipo-pregunta">Selección múltiple</span></td>
-                        <td>Programación</td>
+                        <td>adso</td>
                         <td>
                             <div class="action-buttons">
                                 <button class="btn-action btn-view" onclick="verPregunta(1)" title="Ver">

@@ -15,8 +15,8 @@
     <div class="main">
         <div class="main-header">
             <div>
-                <h1>Resultados</h1>
-                <p>Gestión de estudiantes del sistema educativo</p>
+                <h1>Gestión de Resultados</h1>
+                <p>Modulo para la administración y seguimiento de los resultados del sistema educativo</p>
             </div>
             
         </div>
@@ -81,7 +81,7 @@
     <!-- Contenedor de tabla -->
     <div class="table-wrapper">
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Buscar estudiante..." id="search-input">
+        <input type="text" class="search-input" placeholder="Buscar aspirantes..." id="search-input">
         <i class="fas fa-search search-icon"></i>
       </div>
 
