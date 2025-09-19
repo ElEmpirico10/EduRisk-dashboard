@@ -1,106 +1,154 @@
-
-
--- 1. Crear ENUM para tipo de documento
-DROP TYPE IF EXISTS tipo_documento CASCADE;
-CREATE TYPE tipo_documento AS ENUM ('tarjeta_identidad', 'cedula', 'cedula_extranjera');
-
 -- ======================================
--- TABLA INSTRUCTOR
+-- ENUM para tipo de documento
 -- ======================================
-CREATE TABLE Instructor (
-    id_instructor SERIAL PRIMARY KEY,
-    primer_nombre VARCHAR(50),
-    segundo_nombre VARCHAR(50),
-    primer_apellido VARCHAR(50),
-    segundo_apellido VARCHAR(50),
-    tipo_tarjeta tipo_documento,  -- aquí usamos el ENUM
-    numero_tarjeta BIGINT,
-    contrasena VARCHAR
-);
+DO $$
+BEGIN
+   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'tipo_documento') THEN
+      CREATE TYPE tipo_documento AS ENUM ('tarjeta_identidad', 'cedula', 'cedula_extranjera');
+   END IF;
+END$$;
 
 -- ======================================
 -- TABLA FICHA
 -- ======================================
-CREATE TABLE Ficha (
+CREATE TABLE IF NOT EXISTS Ficha (
     id_ficha SERIAL PRIMARY KEY,
-    nombre_ficha VARCHAR(30),
-    codigo_ficha BIGINT,
-    id_instructor INT,
-    CONSTRAINT fk_ficha_instructor FOREIGN KEY (id_instructor) REFERENCES Instructor(id_instructor)
-);
-
--- ======================================
--- TABLA ASPIRANTE
--- ======================================
-CREATE TABLE Aspirante (
-    id_aspirante SERIAL PRIMARY KEY,
-    primer_nombre VARCHAR(50),
-    segundo_nombre VARCHAR(50),
-    primer_apellido VARCHAR(50),
-    segundo_apellido VARCHAR(50),
-    email VARCHAR(50),
-    tipo_tarjeta tipo_documento,  -- aquí usamos el ENUM
-    numero_tarjeta BIGINT,
-    contrasena VARCHAR,
-    id_ficha INT,
-    CONSTRAINT fk_aspirante_ficha FOREIGN KEY (id_ficha) REFERENCES Ficha(id_ficha)
+    nombre_ficha VARCHAR(30) NOT NULL,
+    codigo_ficha BIGINT NOT NULL UNIQUE
 );
 
 -- ======================================
 -- TABLA EXAMEN
 -- ======================================
-CREATE TABLE Examen (
+CREATE TABLE IF NOT EXISTS Examen (
     id_examen SERIAL PRIMARY KEY,
-    nombre VARCHAR(50),
-    fecha_inicio TIMESTAMP,
-    fecha_fin TIMESTAMP,
+    nombre VARCHAR(50) NOT NULL,
+    fecha_inicio TIMESTAMP NOT NULL,
+    fecha_fin TIMESTAMP NOT NULL,
     habilitado BOOLEAN DEFAULT FALSE,
-    estado varchar(100),
-    id_instructor INT,
-    CONSTRAINT fk_examen_instructor FOREIGN KEY (id_instructor) REFERENCES Instructor(id_instructor)
+    estado VARCHAR(100) NOT NULL,
+    id_ficha INT NOT NULL REFERENCES Ficha (id_ficha),
+    CONSTRAINT unique_nombre_ficha UNIQUE (nombre, id_ficha)
+);
+
+-- ======================================
+-- TABLA ASPIRANTE
+-- ======================================
+CREATE TABLE IF NOT EXISTS Aspirante (
+    id_aspirante SERIAL PRIMARY KEY,
+    primer_nombre VARCHAR(50) NOT NULL,
+    segundo_nombre VARCHAR(50),
+    primer_apellido VARCHAR(50) NOT NULL,
+    segundo_apellido VARCHAR(50),
+    email VARCHAR(100) NOT NULL,
+    tipo_tarjeta tipo_documento NOT NULL,
+    numero_tarjeta BIGINT NOT NULL,
+    contrasena TEXT NOT NULL,
+    id_ficha INT NOT NULL REFERENCES Ficha(id_ficha),
+    CONSTRAINT unique_email_numero UNIQUE (email, numero_tarjeta)
+);
+
+-- ======================================
+-- TABLA EXAMEN_ASPIRANTE
+-- ======================================
+CREATE TABLE IF NOT EXISTS Examen_Aspirante (
+    id_examen_aspirante SERIAL PRIMARY KEY,
+    id_examen INT NOT NULL REFERENCES Examen(id_examen),
+    id_aspirante INT NOT NULL REFERENCES Aspirante(id_aspirante),
+    fecha_realizacion TIMESTAMP,
+    CONSTRAINT unique_examen_aspirante UNIQUE (id_examen, id_aspirante)
 );
 
 -- ======================================
 -- TABLA PREGUNTA
 -- ======================================
-CREATE TABLE Pregunta (
+CREATE TABLE IF NOT EXISTS Pregunta (
     id_pregunta SERIAL PRIMARY KEY,
-    texto_pregunta VARCHAR,
-    tipo_pregunta VARCHAR,
-    contenido VARCHAR,
-    programa VARCHAR,
-    valor_pregunta NUMERIC
+    texto_pregunta TEXT NOT NULL,
+    tipo_pregunta VARCHAR(50) NOT NULL,
+    contenido TEXT,
+    CONSTRAINT unique_pregunta UNIQUE (texto_pregunta, tipo_pregunta)
 );
 
 -- ======================================
 -- TABLA EXAMEN_PREGUNTA (relación N:M)
 -- ======================================
-CREATE TABLE examen_pregunta (
+CREATE TABLE IF NOT EXISTS Examen_Pregunta (
     id_examen_pregunta SERIAL PRIMARY KEY,
-    id_examen INT,
-    id_pregunta INT,
-    CONSTRAINT fk_examenpreg_examen FOREIGN KEY (id_examen) REFERENCES Examen(id_examen),
-    CONSTRAINT fk_examenpreg_preg FOREIGN KEY (id_pregunta) REFERENCES Pregunta(id_pregunta)
+    id_examen INT NOT NULL REFERENCES Examen(id_examen),
+    id_pregunta INT NOT NULL REFERENCES Pregunta(id_pregunta),
+    CONSTRAINT unique_examen_pregunta UNIQUE (id_examen, id_pregunta)
 );
 
 -- ======================================
 -- TABLA RESPUESTA
 -- ======================================
-CREATE TABLE Respuesta (
+CREATE TABLE IF NOT EXISTS Respuesta (
     id_respuesta SERIAL PRIMARY KEY,
-    texto_respuesta VARCHAR,
-    valor_respuesta NUMERIC,
-    id_aspirante INT,
-    id_pregunta INT,
-    id_examen INT,
-    CONSTRAINT fk_resp_aspirante FOREIGN KEY (id_aspirante) REFERENCES Aspirante(id_aspirante),
-    CONSTRAINT fk_resp_preg FOREIGN KEY (id_pregunta) REFERENCES Pregunta(id_pregunta),
-    CONSTRAINT fk_resp_examen FOREIGN KEY (id_examen) REFERENCES Examen(id_examen)
+    texto_respuesta TEXT,
+    valor_respuesta INT,
+    id_aspirante INT NOT NULL REFERENCES Aspirante(id_aspirante),
+    id_pregunta INT NOT NULL REFERENCES Pregunta(id_pregunta),
+    id_examen INT NOT NULL REFERENCES Examen(id_examen),
+    CONSTRAINT unique_respuesta UNIQUE (id_aspirante, id_pregunta, id_examen)
 );
 
---======================================
--- funcion para buscar aspirante NOMBRE: buscar_aspirante
---======================================
+-- ======================================
+-- DATOS DE PRUEBA
+-- ======================================
+
+-- INSERT FICHA DE PRUEBA
+INSERT INTO Ficha (nombre_ficha, codigo_ficha)
+VALUES ('ADSO 2934070', 2934070)
+ON CONFLICT (codigo_ficha) DO NOTHING;
+
+-- INSERT ASPIRANTE DE PRUEBA
+INSERT INTO Aspirante (
+    primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,
+    email, tipo_tarjeta, numero_tarjeta, contrasena, id_ficha
+) VALUES (
+    'Juan', 'Carlos', 'Perez', 'Lopez',
+    'juan@example.com', 'cedula', 123456789,
+    '$2y$10$p1Zpde4FDfNTJbm9JOphsexRPCsXZ2/XooeZdy1/.EYe/BrdRdXcS',
+    1
+)
+ON CONFLICT (email, numero_tarjeta) DO NOTHING;
+
+-- INSERT EXAMEN DE PRUEBA
+INSERT INTO Examen (nombre, fecha_inicio, fecha_fin, habilitado, estado, id_ficha)
+VALUES (
+    'Examen Diagnóstico ADSO',
+    NOW(),
+    NOW() + INTERVAL '7 days',
+    TRUE,
+    'Activo',
+    1
+)
+ON CONFLICT (nombre, id_ficha) DO NOTHING;
+
+-- INSERT PREGUNTAS
+INSERT INTO Pregunta (texto_pregunta, tipo_pregunta, contenido) VALUES
+('¿Por qué elegiste estudiar ADSO?', 'textarea', 'Explica las razones que te motivaron a elegir Análisis y Desarrollo de Software...'),
+('¿Te gustaría trabajar en desarrollo de software en el futuro?', 'radio', '["Sí","No","Tal vez"]'),
+('¿Ya has tenido experiencias previas con programación?', 'radio', '["Sí","No","Tal vez"]'),
+('¿Qué tanto disfrutas resolver problemas o retos lógicos?', 'select', '["Me encanta, es lo que más disfruto","Me gusta bastante","Me gusta moderadamente","No me gusta mucho","No me gusta para nada"]'),
+('¿Lees o investigas sobre tecnología por cuenta propia?', 'radio', '["Sí","No","Tal vez"]'),
+('¿Tienes metas claras relacionadas con tu formación en ADSO?', 'textarea', 'Describe qué metas específicas tienes con esta formación y cómo planeas alcanzarlas...')
+ON CONFLICT (texto_pregunta, tipo_pregunta) DO NOTHING;
+
+-- VINCULA PREGUNTAS AL EXAMEN
+INSERT INTO Examen_Pregunta (id_examen, id_pregunta) VALUES 
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6)
+ON CONFLICT (id_examen, id_pregunta) DO NOTHING;
+
+-- ======================================
+-- FUNCION: buscar_aspirante
+-- ======================================
 CREATE OR REPLACE FUNCTION buscar_aspirante(
     p_tipo_tarjeta tipo_documento,
     p_numero_tarjeta BIGINT
@@ -114,7 +162,7 @@ RETURNS TABLE (
     email VARCHAR,
     tipo_tarjeta tipo_documento,
     numero_tarjeta BIGINT,
-    contrasena VARCHAR,
+    contrasena TEXT,
     id_ficha INT
 ) AS $$
 BEGIN
@@ -135,171 +183,3 @@ BEGIN
       AND a.numero_tarjeta = p_numero_tarjeta;
 END;
 $$ LANGUAGE plpgsql;
-
---======================================
--- procedimiento para insertar examen nombre : insertar_examen
---======================================
-
-CREATE OR REPLACE PROCEDURE insertar_examen(
-    p_nombre        VARCHAR,
-    p_fecha_inicio  TIMESTAMP,
-    p_fecha_fin     TIMESTAMP,
-    
-    p_estado        VARCHAR,
-    p_id_instructor INT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO Examen(
-        nombre,
-        fecha_inicio,
-        fecha_fin,
-        habilitado,
-        estado,
-        id_instructor
-    )
-    VALUES (
-        p_nombre,
-        p_fecha_inicio,
-        p_fecha_fin,
-        FALSE,
-        p_estado,
-        p_id_instructor
-    );
-END;
-$$;
---======================================
--- procedimiento para insertar aspirante nombre : insertar_aspirante
---======================================
-
-
-CREATE OR REPLACE PROCEDURE insertar_aspirante(
-    p_primer_nombre    VARCHAR,
-    p_segundo_nombre   VARCHAR,
-    p_primer_apellido  VARCHAR,
-    p_segundo_apellido VARCHAR,
-    p_email            VARCHAR,
-    p_tipo_tarjeta     tipo_documento,
-    p_numero_tarjeta   BIGINT,
-    p_contrasena       VARCHAR,
-    p_id_ficha         INT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO Aspirante(
-        primer_nombre,
-        segundo_nombre,
-        primer_apellido,
-        segundo_apellido,
-        email,
-        tipo_tarjeta,
-        numero_tarjeta,
-        contrasena,
-        id_ficha
-    )
-    VALUES (
-        p_primer_nombre,
-        p_segundo_nombre,
-        p_primer_apellido,
-        p_segundo_apellido,
-        p_email,
-        p_tipo_tarjeta,
-        p_numero_tarjeta,
-        p_contrasena,
-        p_id_ficha
-    );
-END;
-$$;
-
---======================================
--- procedimiento para insertar ficha nombre : insertar_ficha
---======================================
-
-CREATE OR REPLACE PROCEDURE insertar_ficha(
-    p_nombre_ficha VARCHAR,
-    p_codigo_ficha BIGINT,
-    p_id_instructor INT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO Ficha(
-        nombre_ficha,
-        codigo_ficha,
-        id_instructor
-    )
-    VALUES (
-        p_nombre_ficha,
-        p_codigo_ficha,
-        p_id_instructor
-    );
-END;
-$$;
-
---======================================
--- procedimiento para insertar pregunta nombre : insertar_pregunta
---======================================
-
-CREATE OR REPLACE PROCEDURE insertar_pregunta(
-    p_texto_pregunta VARCHAR,
-    p_tipo_pregunta VARCHAR,
-    p_contenido VARCHAR,
-    p_programa VARCHAR,
-    p_valor_pregunta
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO Pregunta (texto_pregunta, tipo_pregunta, contenido, programa,valor_pregunta)
-    VALUES (p_texto_pregunta, p_tipo_pregunta, p_contenido, p_programa,p_valor_pregunta);
-END;
-$$;
-
---======================================
--- procedimiento para insertar realciones de pregunta con examen  nombre : insertar_examen_pregunta
---======================================
-
-CREATE OR REPLACE PROCEDURE insertar_examen_pregunta(
-    p_id_examen   INT,
-    p_id_pregunta INT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO examen_pregunta (id_examen, id_pregunta)
-    VALUES (p_id_examen, p_id_pregunta);
-END;
-$$;
-
---======================================
--- procedimiento para insertar respuesta  nombre : insertar_respuesta
---======================================
-
-CREATE OR REPLACE PROCEDURE insertar_respuesta(
-    p_texto_respuesta  VARCHAR,
-    p_valor_respuesta  NUMERIC,
-    p_id_aspirante     INT,
-    p_id_pregunta      INT,
-    p_id_examen        INT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-    INSERT INTO Respuesta (
-        texto_respuesta,
-        valor_respuesta,
-        id_aspirante,
-        id_pregunta,
-        id_examen
-    )
-    VALUES (
-        p_texto_respuesta,
-        p_valor_respuesta,
-        p_id_aspirante,
-        p_id_pregunta,
-        p_id_examen
-    );
-END;
-$$;
