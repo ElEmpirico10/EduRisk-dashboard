@@ -276,15 +276,9 @@
             font-weight: 500;
         }
 
-        .status-activo {
-            background: rgba(76, 175, 80, 0.15);
-            color: #2e7d32;
-        }
+ 
 
-        .status-inactivo {
-            background: rgba(244, 67, 54, 0.15);
-            color: #c62828;
-        }
+     
 
         .actions-buttons {
             display: flex;

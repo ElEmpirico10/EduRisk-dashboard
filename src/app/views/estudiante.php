@@ -34,16 +34,18 @@
             <table class="estudiantes-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>tipo documento</th>
                         <th>Documento</th>
                         <th>ficha</th>
-                        <th>Estado</th>
+                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="estudiantesTableBody">
                     <tr>
+                        <td>1</td>
                         <td>
                             <div class="student-info">
                                
@@ -57,7 +59,7 @@
                         <td>12345678</td>
                         <td>2933470</td>
                         
-                        <td><span class="status-badge status-activo">Activo</span></td>
+                       
                        
                         <td>
                             <div class="actions-buttons">
@@ -71,7 +73,9 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td>
+                            
                             <div class="student-info">
                                
                                 <div class="student-details">
@@ -84,7 +88,7 @@
                         <td>12345678</td>
                         <td>3984628</td>
 
-                        <td><span class="status-badge status-activo">Activo</span></td>
+                       
                        
                         <td>
                             <div class="actions-buttons">
@@ -98,6 +102,7 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td>
                             <div class="student-info">
                                 
@@ -110,7 +115,7 @@
                         <td>cedula</td>
                         <td>12345678</td>
                         <td>785748</td>
-                        <td><span class="status-badge status-inactivo">Inactivo</span></td>
+                        
                         
                         <td>
                             <div class="actions-buttons">
